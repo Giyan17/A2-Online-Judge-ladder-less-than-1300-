@@ -1,0 +1,54 @@
+#include<iostream>
+#include<vector>
+#include<fstream>
+
+using namespace std;
+
+int main(){
+    //size_t n;
+
+    //freopen("input.txt", "r", stdin);
+    //freopen("output.txt", "w", stdout);
+    int n;
+    cin >> n;
+
+    vector<int> a, index;
+    int temp;
+
+    for(int i=0; i<2*n; i++){
+        cin >> temp;
+        a.push_back(temp);
+    }
+
+    int x=0;
+    for(int i=0; i<a.size(); i++){
+
+        for(int j=i+1; j<a.size(); j++){
+            if(a[i] == a[j]){
+                index.push_back(i+x);
+                index.push_back(j+x);
+                a.erase(a.begin()+i);
+                for(int z=0; z<a.size(); z++) cout << a[z] << " ";
+                cout << endl;
+                a.erase(a.begin()+j-1);
+                for(int z=0; z<a.size(); z++) cout << a[z] << " ";
+                cout << endl;
+                x+=2;
+                i--;
+            }
+        }
+    }
+    cout << a.size() << endl;
+
+    for(int i=0; i<a.size(); i++) cout << a[i] << " ";
+    cout << endl;
+    if(index.size() != 2*n)cout << -1;
+    else{
+        for(int i=0; i<2*n; i+=2){
+            cout << index[i]+1 << " " << index[i+1]+1 << endl;
+        }
+    }
+
+
+
+}
